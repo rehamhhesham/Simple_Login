@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Simple Login</title>
+        <link rel="icon" type="image/png" href="Teddy.png">
+        <style>
+        body{
+            margin:0;
+            padding:0;
+            background:#0f0f0f;
+            font-family:Arial;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .box{
+            position:relative;
+            background:#1b1b1b;
+            padding:40px;
+            width:320px;
+            border-radius:50px;
+            overflow:hidden;
+        }
+
+        .box::before{
+            filter: blur(3px);
+            content:"";
+            position:absolute;
+            width:200%;
+            height:200%;
+            top:-50%;
+            left:-50%;
+            background:conic-gradient(
+                transparent 0deg,
+                pink 90deg,
+                transparent 180deg,
+                hotpink 270deg,
+                /* #ff006a */
+                /* #ff91a4 */
+                transparent 360deg);
+            animation:rotate 4s linear infinite;
+            pointer-events: none;
+        }
+
+        .box::after{
+            content:"";
+            position:absolute;
+            inset:3px;
+            background:#1b1b1b;
+            border-radius:50px;
+        }
+
+        
+        .box *{
+            position:relative;
+            z-index:1;
+        }
+
+
+        @keyframes rotate{
+            0%{ transform:rotate(0deg); }
+            100%{ transform:rotate(360deg); }
+        }
+
+
+        h2{
+            color:white;
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        label{
+            color:#ccc;
+            font-size:14px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:8px;
+            border-radius:50px;
+            border:2px solid #333;
+            outline:none;
+            background:#111;
+            color:white;
+            transition:0.3s;
+        }
+
+        input:focus{
+            border-color:palevioletred;
+            box-shadow:0 0 10px palevioletred;
+        }
+
+        .error{
+            color:red;
+            font-size:12px;
+            margin-top:5px;
+            margin-bottom:10px;
+            display:none;
+        }
+
+        .input-error{
+            border-color:red !important;
+            box-shadow:0 0 8px red !important;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:25px;
+            background:#ff0080;
+            color:black;
+            font-weight:bold;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            box-shadow:0 0 15px palevioletred;
+        }
+
+        .forgot{
+            text-align:center;
+            margin-top:15px;
+            font-size:14px;
+            color:#aaa;
+        }
+
+        .forgot a{
+            color:palevioletred;
+            text-decoration:none;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <h2>LOGIN</h2>
+
+            <label>Username</label>
+            <input type="text" id="username">
+            <div class="error" id="userError">Please enter username</div>
+
+            <label>Password</label>
+            <input type="password" id="password">
+            <div class="error" id="passError">Please enter password</div>
+
+            <button onclick="login()">Sign In</button>
+
+            <div class="forgot">
+                Forgot Password? 
+                <!-- <a href="https://...." target="_blank">Click Here</a> -->
+                <a target="_blank">Click Here</a>
+            </div>
+        </div>
+
+        <script>
+            function login(){
+            let user = document.getElementById("username");
+            let pass = document.getElementById("password");
+            let userError = document.getElementById("userError");
+            let passError = document.getElementById("passError");
+
+            let valid = true;
+
+            // Username 
+            if(user.value.trim() === ""){
+                userError.style.display = "block";
+                user.classList.add("input-error");
+                valid = false;
+                }else{
+                userError.style.display = "none";
+                user.classList.remove("input-error");
+            }
+
+            // Password 
+            if(pass.value.trim() === ""){
+                passError.style.display = "block";
+                pass.classList.add("input-error");
+                valid = false;
+                }else{
+                passError.style.display = "none";
+                pass.classList.remove("input-error");
+            }
+
+            // if(valid){
+            //     window.open("https://....", "_blank");
+        
+            // }
+        }
+        </script>
+    </body>
+</html>
